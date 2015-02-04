@@ -1,5 +1,5 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 source $ROOTDIR/env/environment.sh
 
 LOGPATH="$ROOTDIR/run/mongo.log"
@@ -17,7 +17,7 @@ mongod --fork \
     --dbpath $DBPATH \
     --logpath $LOGPATH \
     --pidfilepath $PIDPATH \
-    --port $MONGO_PORT \
+    --port ${MONGO_PORT:-27017} \
     $MONGO_OPTS
 
 sleep 1

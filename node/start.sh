@@ -1,5 +1,5 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 echo "Starting in $ROOTDIR"
 
 source $ROOTDIR/env/environment.sh

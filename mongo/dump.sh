@@ -1,10 +1,10 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 
 source $ROOTDIR/env/environment.sh
 SNAPS=$ROOTDIR/snapshots
 
-sh $ROOTDIR/build/deploy/mongo/start.sh
+sh $ROOTDIR/deploy/mongo/start.sh
 
 mkdir "$SNAPS"
 TAG=${NODE_ENV}_$(date +%Y-%m-%dT%H-%M-%S)

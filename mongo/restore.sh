@@ -1,5 +1,5 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 source $ROOTDIR/env/environment.sh
 
 SNAP="$1"
@@ -13,7 +13,7 @@ SNAP="$1"
 
 SNAPDIR=${SNAP%\.*}
 
-sh $ROOTDIR/build/deploy/mongo/start.sh
+sh $ROOTDIR/deploy/mongo/start.sh
 
 cd $ROOTDIR/snapshots
 tar xf $SNAP

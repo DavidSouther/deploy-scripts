@@ -1,5 +1,5 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 source $ROOTDIR/env/environment.sh
 
 PIDPATH="$ROOTDIR/run/mongo.pid"

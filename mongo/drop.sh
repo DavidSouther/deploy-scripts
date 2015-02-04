@@ -1,9 +1,9 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 
 source $ROOTDIR/env/environment.sh
 
-sh $ROOTDIR/build/deploy/mongo/stop.sh
+sh $ROOTDIR/deploy/mongo/stop.sh
 
 rm -rf $ROOTDIR/run/db
 

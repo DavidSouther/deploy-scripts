@@ -1,3 +1,1 @@
-require('coffee-script');
-require('coffee-script/register');
-require('../../app').start();
+require('../app').start();
