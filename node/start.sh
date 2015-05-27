@@ -4,8 +4,9 @@ echo "Starting in $ROOTDIR"
 
 source $ROOTDIR/env/environment.sh
 
-# Start mongo, if needed
+# Start persistence
 sh $ROOTDIR/deploy/mongo/start.sh
+sh $ROOTDIR/deploy/redis/start.sh
 
 # Check that we aren't already started
 [ -f $ROOTDIR/run/node.pid ] && {
