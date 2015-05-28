@@ -3,8 +3,8 @@ ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 
 source $ROOTDIR/env/environment.sh
 
-sh $ROOTDIR/deploy/mongo/stop.sh
+sh $ROOTDIR/deploy/redis/stop.sh
 
-rm -rf $ROOTDIR/run/mongo_db
+rm -rf $ROOTDIR/run/redis_db
 
-echo "Mongo DB dropped."
+echo "Redis dump dropped."

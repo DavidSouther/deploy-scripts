@@ -4,8 +4,9 @@ echo "Starting in $ROOTDIR"
 
 source $ROOTDIR/env/environment.sh
 
-# Start mongo, if needed
-sh $ROOTDIR/src/deploy/mongo/start.sh
+# Start persistence
+sh $ROOTDIR/deploy/mongo/start.sh
+sh $ROOTDIR/deploy/redis/start.sh
 
 # Check that we aren't already started
 [ -f $ROOTDIR/run/node.pid ] && {
@@ -13,6 +14,7 @@ sh $ROOTDIR/src/deploy/mongo/start.sh
     exit 0;
 }
 
+# Rotate old log files
 [ -f $ROOTDIR/run/node.log ] && {
     LOG=$ROOTDIR/run/node.log
     TMP=$LOG.$(date +%Y-%m-%dT%H-%M-%S)
@@ -20,13 +22,18 @@ sh $ROOTDIR/src/deploy/mongo/start.sh
     mv $LOG $TMP
 }
 
-nohup \
-node   $ROOTDIR/node_modules/.bin/nodemon \
-    -w $ROOTDIR/src/server -e coffee \
-       $ROOTDIR/app.js \
-       >| $ROOTDIR/run/node.log 2>&1 </dev/null \
-       &
+SCRIPT=app
 
-echo $! >| $ROOTDIR/run/node.pid
+if [ "x$NODE_ENV" == "xdevelopment" ] ; then
+  SCRIPT=supervise
+fi
+
+node \
+  $ROOTDIR/$SCRIPT.js \
+  >| $ROOTDIR/run/node.log 2>&1 </dev/null \
+  &
+
+PID=$!
+[ $? == 0 ] && echo $PID >| $ROOTDIR/run/node.pid
 
 echo "Combined out/err node log at $ROOTDIR/run/node.log"
