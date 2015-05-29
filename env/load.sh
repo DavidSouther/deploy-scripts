@@ -1,5 +1,5 @@
 #!/bin/sh
-ROOTDIR="$(cd "$(dirname $0)/../../.." && pwd)"
+ROOTDIR="$(cd "$(dirname $0)/../.." && pwd)"
 
 APPBRANCH=$(node -p 'require("./package").name')
 
